@@ -35,9 +35,13 @@
     timeout: "{{ jenkins_plugin_timeout }}"
     updates_expiration: "{{ jenkins_plugin_updates_expiration }}"
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}"
+  register: result
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_password != ""
   notify: restart jenkins
+  retries: 6
+  delay: 5
+  until: result|success
 
 - name: Install Jenkins plugins using token.
   jenkins_plugin:
@@ -49,3 +53,7 @@
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_token != ""
   notify: restart jenkins
+  register: result
+  retries: 6
+  delay: 5
+  until: result|success

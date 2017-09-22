@@ -43,6 +43,8 @@
   delay: 5
   until: result|success
 
+- debug: var=result
+
 - name: Install Jenkins plugins using token.
   jenkins_plugin:
     name: "{{ item }}"
@@ -57,3 +59,5 @@
   retries: 60
   delay: 5
   until: result|success
+
+- debug: var=result

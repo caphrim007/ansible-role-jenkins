@@ -39,7 +39,7 @@
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_password != ""
   notify: restart jenkins
-  retries: 6
+  retries: 60
   delay: 5
   until: result|success
 
@@ -54,6 +54,6 @@
   when: jenkins_admin_token != ""
   notify: restart jenkins
   register: result
-  retries: 6
+  retries: 60
   delay: 5
   until: result|success

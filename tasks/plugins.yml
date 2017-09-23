@@ -42,9 +42,6 @@
   retries: 60
   delay: 5
   until: result|success
-  ignore_errors: true
-
-- debug: var=result
 
 - name: Install Jenkins plugins using token.
   jenkins_plugin:
@@ -60,6 +57,3 @@
   retries: 60
   delay: 5
   until: result|success
-  ignore_errors: true
-
-- debug: var=result
